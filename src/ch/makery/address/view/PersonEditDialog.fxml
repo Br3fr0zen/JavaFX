@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="438.0" prefWidth="495.0" style="-fx-background-color: white;" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.view.PersonEditDialogController">
+<children><GridPane layoutX="40.0" layoutY="14.0" prefHeight="334.0" prefWidth="527.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="-72.0" AnchorPane.topAnchor="14.0">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="120.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="240.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+<children><Label style="-fx-text-fill: black;" text="First Name" /><Label style="-fx-text-fill: black;" text="Last Name" GridPane.rowIndex="1" /><Label style="-fx-text-fill: black;" text="Street" GridPane.rowIndex="2" /><Label style="-fx-text-fill: black;" text="City" GridPane.rowIndex="3" /><Label style="-fx-text-fill: black;" text="Postal Code" GridPane.rowIndex="4" /><Label style="-fx-text-fill: black;" text="Birthday" GridPane.rowIndex="5" />
+            <DatePicker fx:id="birthdayField" ShowWeekNumbers="false" prefHeight="32.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></DatePicker>
+            <JFXTextField fx:id="firstNameField" focusColor="#3765f2" GridPane.columnIndex="1" />
+            <JFXTextField fx:id="lastNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <JFXTextField fx:id="streetField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <JFXTextField fx:id="cityField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <JFXTextField fx:id="postalCodeField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+</children>
+</GridPane>
+<HBox layoutX="197.1875" layoutY="241.0" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+<children><Button defaultButton="true" layoutX="197.1875" layoutY="241.0" mnemonicParsing="false" onAction="#handleOk" prefWidth="90.0" text="OK" /><Button layoutX="249.375" layoutY="241.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="70.0" prefWidth="159.0" text="Cancel" />
+</children>
+</HBox>
+</children></AnchorPane>
