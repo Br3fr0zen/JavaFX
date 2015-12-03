@@ -1,5 +1,6 @@
 package ch.makery.address;
 import java.io.File;
+
 import java.io.IOException;
 import java.util.prefs.Preferences;
 
@@ -7,30 +8,39 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+
 import org.controlsfx.dialog.Dialogs;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import ch.makery.address.model.Person;
 import ch.makery.address.model.PersonListWrapper;
 import ch.makery.address.view.BirthdayStatisticsController;
 import ch.makery.address.view.PersonEditDialogController;
 import ch.makery.address.view.PersonOverviewController;
 import ch.makery.address.view.RootLayoutController;
+import insidefx.undecorator.Undecorator;
 
 public class MainApp extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
+    private RootLayoutController rootController;
+    
     
     /**
      * The data as an observable list of Persons.
@@ -51,14 +61,18 @@ public class MainApp extends Application {
         personData.add(new Person("Anna", "Best","#4B0FFF"));
         personData.add(new Person("Stefan", "Meier","#4B0FFF"));
         personData.add(new Person("Martin", "Mueller","#4B0FFF"));
+        personData.add(new Person("","","#ffffff"));
     }
 
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("AddressApp");
+        this.primaryStage.setTitle("");
         this.primaryStage.getIcons().add(new Image("file:resources/images/address_book_32.png"));
-
+        this.primaryStage.initStyle(StageStyle.UNDECORATED);
+        
+        
+        
         initRootLayout();
 
         showPersonOverview();
@@ -75,14 +89,27 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class
                     .getResource("view/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
+         
+          
+            
+           
+          
+          
+          
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
+           
+            
+        
+      
+            
+            
             primaryStage.setScene(scene);
 
             // Give the controller access to the main app.
-            RootLayoutController controller = loader.getController();
-            controller.setMainApp(this);
+            rootController = loader.getController();
+            rootController.setMainApp(this);
 
             primaryStage.show();
         } catch (IOException e) {
@@ -106,16 +133,52 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("view/PersonOverview.fxml"));
             AnchorPane personOverview = (AnchorPane) loader.load();
             
+            FadeTransition ft = new FadeTransition(Duration.millis(700), personOverview);
+            ft.setFromValue(0.0);
+            ft.setToValue(1.0);
+            ft.play();
             // Set person overview into the center of root layout.
             rootLayout.setCenter(personOverview);
             
             // Give the controller access to the main app.
             PersonOverviewController controller = loader.getController();
             controller.setMainApp(this);
+            controller.setRootLayout(rootController);
+            
+          
             
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public void cambiareditar(int bid){
+    	
+            // Load person overview.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/PersonEditDialog.fxml"));
+            AnchorPane personOverview;
+			try {
+								
+				personOverview = (AnchorPane) loader.load();
+				FadeTransition ft = new FadeTransition(Duration.millis(700), personOverview);
+	            ft.setFromValue(0.0);
+	            ft.setToValue(1.0);
+	            ft.play();
+				rootLayout.setCenter(personOverview);
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            
+			
+            PersonEditDialogController controller = loader.getController();
+            controller.setMainApp(this);
+            controller.setPerson(personData.get(bid));
+            
+            
+       
     }
     
 	/**
@@ -232,10 +295,11 @@ public class MainApp extends Application {
             setPersonFilePath(file);
 
         } catch (Exception e) { // catches ANY exception
-            Dialogs.create()
-                    .title("Error")
-                    .masthead("Could not load data from file:\n" + file.getPath())
-                    .showException(e);
+        	//PESAOOOOOOOOOOOOO
+//            Dialogs.create()
+//                    .title("Error")
+//                    .masthead("Could not load data from file:\n" + file.getPath())
+//                    .showException(e);
         }
     }
     
@@ -293,6 +357,7 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+
     
     
     

@@ -43,8 +43,5 @@
                </effect></Button>
 </children>
 </HBox>
-      <ColorPicker fx:id="colorPicker" layoutX="50.0" layoutY="248.0" prefHeight="42.0" prefWidth="101.0" stylesheets="@DarkTheme.css">
-         <effect>
-            <DropShadow color="#00000063" height="10.0" offsetX="4.0" offsetY="4.0" radius="4.5" width="10.0" />
-         </effect></ColorPicker>
+      <ColorPicker fx:id="colorPicker" layoutY="235.0" stylesheets="@DarkTheme.css" />
 </children></AnchorPane>

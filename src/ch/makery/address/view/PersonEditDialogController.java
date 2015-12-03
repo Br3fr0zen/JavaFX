@@ -1,8 +1,11 @@
 package ch.makery.address.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -12,6 +15,7 @@ import org.controlsfx.dialog.Dialogs;
 
 import com.jfoenix.controls.JFXTextField;
 
+import ch.makery.address.MainApp;
 import ch.makery.address.model.Person;
 import ch.makery.address.util.DateUtil;
 
@@ -21,158 +25,164 @@ import ch.makery.address.util.DateUtil;
  * @author Marco Jakob
  */
 public class PersonEditDialogController {
+	@FXML
+	private AnchorPane PersonEditDialogEdit;
 
-    @FXML
-    private JFXTextField firstNameField;
-    @FXML
-    private TextField lastNameField;
-    @FXML
-    private TextField streetField;
-    @FXML
-    private TextField postalCodeField;
-    @FXML
-    private TextField cityField;
-    @FXML
-    private DatePicker birthdayField;
-    @FXML
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    
-    
+	@FXML
+	private JFXTextField firstNameField;
+	@FXML
+	private TextField lastNameField;
+	@FXML
+	private TextField streetField;
+	@FXML
+	private TextField postalCodeField;
+	@FXML
+	private TextField cityField;
+	@FXML
+	private DatePicker birthdayField;
+	@FXML
+	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	@FXML
+	private MainApp mainApp;
+	@FXML
+	private ColorPicker colorPicker;
 
-    private Stage dialogStage;
-    private Person person;
-    private boolean okClicked = false;
-    private String fecha;
-    /**
-     * Initializes the controller class. This method is automatically called
-     * after the fxml file has been loaded.
-     */
-    @FXML
-    private void initialize() {
+	private Stage dialogStage;
+	private Person person;
+	private boolean okClicked = false;
+	private String fecha;
 
-    }
-    
-    /**
-     * Sets the stage of this dialog.
-     * 
-     * @param dialogStage
-     */
-    public void setDialogStage(Stage dialogStage) {
-        this.dialogStage = dialogStage;
-    }
+	/**
+	 * Initializes the controller class. This method is automatically called
+	 * after the fxml file has been loaded.
+	 */
+	@FXML
+	private void initialize() {
 
-    /**
-     * Sets the person to be edited in the dialog.
-     * 
-     * @param person
-     */
-    public void setPerson(Person person) {
-        this.person = person;
+	}
 
-        firstNameField.setText(person.getFirstName());
-        lastNameField.setText(person.getLastName());
-        streetField.setText(person.getStreet());
-        postalCodeField.setText(Integer.toString(person.getPostalCode()));
-        cityField.setText(person.getCity());
-        birthdayField.setPromptText(person.getBirthday().toString());
-       
-    }
+	/**
+	 * Sets the stage of this dialog.
+	 * 
+	 * @param dialogStage
+	 */
+	public void setDialogStage(Stage dialogStage) {
+		this.dialogStage = dialogStage;
+	}
 
-    /**
-     * Returns true if the user clicked OK, false otherwise.
-     * 
-     * @return
-     */
-    public boolean isOkClicked() {
-        return okClicked;
-    }
+	public void setMainApp(MainApp mainApp) {
+		this.mainApp = mainApp;
+	}
 
-    /**
-     * Called when the user clicks ok.
-     */
-    @FXML
-    private void handleOk() {
-    	   LocalDate date = birthdayField.getValue();
-           if (date != null) {
-               fecha = formatter.format(date);
-           } else {
-               fecha = "";
-           }
-           
+	/**
+	 * Sets the person to be edited in the dialog.
+	 * 
+	 * @param person
+	 */
+	public void setPerson(Person person) {
+		this.person = person;
 
-    	
-        if (isInputValid()) {
-            person.setFirstName(firstNameField.getText());
-            person.setLastName(lastNameField.getText());
-            person.setStreet(streetField.getText());
-            person.setPostalCode(Integer.parseInt(postalCodeField.getText()));
-            person.setCity(cityField.getText());
-            person.setBirthday(DateUtil.parse(fecha));
-         
-            okClicked = true;
-            dialogStage.close();
-        }
-    }
+		firstNameField.setText(person.getFirstName());
+		lastNameField.setText(person.getLastName());
+		streetField.setText(person.getStreet());
+		postalCodeField.setText(Integer.toString(person.getPostalCode()));
+		cityField.setText(person.getCity());
+		birthdayField.setPromptText(person.getBirthday().toString());
+		colorPicker.setValue(Color.web(person.getcolortext()));
 
-    /**
-     * Called when the user clicks cancel.
-     */
-    @FXML
-    private void handleCancel() {
-        dialogStage.close();
-    }
+	}
 
-    /**
-     * Validates the user input in the text fields.
-     * 
-     * @return true if the input is valid
-     */
-    private boolean isInputValid() {
-        String errorMessage = "";
+	/**
+	 * Returns true if the user clicked OK, false otherwise.
+	 * 
+	 * @return
+	 */
+	public boolean isOkClicked() {
+		return okClicked;
+	}
 
-        if (firstNameField.getText() == null || firstNameField.getText().length() == 0) {
-            errorMessage += "No valid first name!\n"; 
-        }
-        if (lastNameField.getText() == null || lastNameField.getText().length() == 0) {
-            errorMessage += "No valid last name!\n"; 
-        }
-        if (streetField.getText() == null || streetField.getText().length() == 0) {
-            errorMessage += "No valid street!\n"; 
-        }
+	/**
+	 * Called when the user clicks ok.
+	 */
+	@FXML
+	private void handleOk() {
+		LocalDate date = birthdayField.getValue();
+		if (date != null) {
+			fecha = formatter.format(date);
+		} else {
+			fecha = "";
+		}
 
-        if (postalCodeField.getText() == null || postalCodeField.getText().length() == 0) {
-            errorMessage += "No valid postal code!\n"; 
-        } else {
-            // try to parse the postal code into an int.
-            try {
-                Integer.parseInt(postalCodeField.getText());
-            } catch (NumberFormatException e) {
-                errorMessage += "No valid postal code (must be an integer)!\n"; 
-            }
-        }
+		if (isInputValid()) {
+			person.setFirstName(firstNameField.getText());
+			person.setLastName(lastNameField.getText());
+			person.setStreet(streetField.getText());
+			person.setPostalCode(Integer.parseInt(postalCodeField.getText()));
+			person.setCity(cityField.getText());
+			person.setBirthday(DateUtil.parse(fecha));
+			person.setColortext(colorPicker.getValue().toString());
 
-        if (cityField.getText() == null || cityField.getText().length() == 0) {
-            errorMessage += "No valid city!\n"; 
-        }
+			mainApp.showPersonOverview();
 
-        if (fecha == null || fecha.length() == 0) {
-            errorMessage += "No valid birthday!\n";
-        } else {
-            if (!DateUtil.validDate(fecha)) {
-                errorMessage += "No valid birthday. Use the format dd.mm.yyyy!\n";
-            }
-        }
+		}
+	}
 
-        if (errorMessage.length() == 0) {
-            return true;
-        } else {
-            // Show the error message.
-        	Dialogs.create()
-		        .title("Invalid Fields")
-		        .masthead("Please correct invalid fields")
-		        .message(errorMessage)
-		        .showError();
-            return false;
-        }
-    }
+	/**
+	 * Called when the user clicks cancel.
+	 */
+	@FXML
+	private void handleCancel() {
+		mainApp.showPersonOverview();
+	}
+
+	/**
+	 * Validates the user input in the text fields.
+	 * 
+	 * @return true if the input is valid
+	 */
+	private boolean isInputValid() {
+		String errorMessage = "";
+
+		if (firstNameField.getText() == null || firstNameField.getText().length() == 0) {
+			errorMessage += "No valid first name!\n";
+		}
+		if (lastNameField.getText() == null || lastNameField.getText().length() == 0) {
+			errorMessage += "No valid last name!\n";
+		}
+		if (streetField.getText() == null || streetField.getText().length() == 0) {
+			errorMessage += "No valid street!\n";
+		}
+
+		if (postalCodeField.getText() == null || postalCodeField.getText().length() == 0) {
+			errorMessage += "No valid postal code!\n";
+		} else {
+			// try to parse the postal code into an int.
+			try {
+				Integer.parseInt(postalCodeField.getText());
+			} catch (NumberFormatException e) {
+				errorMessage += "No valid postal code (must be an integer)!\n";
+			}
+		}
+
+		if (cityField.getText() == null || cityField.getText().length() == 0) {
+			errorMessage += "No valid city!\n";
+		}
+
+		if (fecha == null || fecha.length() == 0) {
+			errorMessage += "No valid birthday!\n";
+		} else {
+			if (!DateUtil.validDate(fecha)) {
+				errorMessage += "No valid birthday. Use the format dd.mm.yyyy!\n";
+			}
+		}
+
+		if (errorMessage.length() == 0) {
+			return true;
+		} else {
+			// Show the error message.
+			Dialogs.create().title("Invalid Fields").masthead("Please correct invalid fields").message(errorMessage)
+					.showError();
+			return false;
+		}
+	}
 }

@@ -3,6 +3,9 @@ package ch.makery.address.view;
 import java.io.File;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckMenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
 import org.controlsfx.dialog.Dialogs;
@@ -20,6 +23,13 @@ public class RootLayoutController {
 
     // Reference to the main application
     private MainApp mainApp;
+    
+    @FXML
+    private ImageView ivDelete;
+    
+    private boolean deleteM = false;
+    
+   
 
     /**
      * Is called by the main application to give a reference back to itself.
@@ -97,25 +107,37 @@ public class RootLayoutController {
         }
     }
 
-    /**
-     * Opens an about dialog.
-     */
     @FXML
-    private void handleAbout() {
-        Dialogs.create()
-            .title("AddressApp")
-            .masthead("About")
-            .message("Author: Marco Jakob\nWebsite: http://code.makery.ch")
-            .showInformation();
+    private void deleteModeIv(){
+    	
+    	
+    	if(deleteM == true){
+    		//no borra
+    		deleteM = false;
+    		ivDelete.setImage(new Image(MainApp.class.getResourceAsStream("view/img/delete.png")));
+    	}else{
+    		//borra
+    		deleteM = true;
+    		ivDelete.setImage(new Image(MainApp.class.getResourceAsStream("view/img/delete-on.png")));
+    	}
+    	
+    }
+    
+    public boolean deleteMode(){
+    	return deleteM;
     }
     
     /**
      * Opens the birthday statistics.
      */
     @FXML
-    private void handleShowBirthdayStatistics() {
-      mainApp.showBirthdayStatistics();
+    private void handleMinimizar() {
+      mainApp.getPrimaryStage().setIconified(true);
     }
+    
+  
+    
+    
     
 
     /**
