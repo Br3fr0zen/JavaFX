@@ -27,12 +27,13 @@ public class Person {
     private final StringProperty city;
     private final ObjectProperty<LocalDate> birthday;
     private final StringProperty colortext;
+    private final SimpleStringProperty avatar;
 
     /**
      * Default constructor.
      */
     public Person() {
-        this(null, null,null);
+        this(null, null,null,"");
     }
 
     /**
@@ -41,7 +42,7 @@ public class Person {
      * @param firstName
      * @param lastName
      */
-    public Person(String firstName, String lastName,String colortext) {
+    public Person(String firstName, String lastName,String colortext,String avatar) {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
 
@@ -51,6 +52,7 @@ public class Person {
         this.city = new SimpleStringProperty("some city");
         this.colortext = new SimpleStringProperty(colortext);
         this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
+        this.avatar = new SimpleStringProperty(avatar);
     }
 
     public String getFirstName() {
@@ -135,5 +137,9 @@ public class Person {
     public ObjectProperty<LocalDate> birthdayProperty() {
         return birthday;
     }
+
+	public String getAvatar() {
+		return avatar.get();
+	}
 }
 

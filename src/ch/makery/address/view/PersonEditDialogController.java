@@ -4,8 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -27,7 +30,6 @@ import ch.makery.address.util.DateUtil;
 public class PersonEditDialogController {
 	@FXML
 	private AnchorPane PersonEditDialogEdit;
-
 	@FXML
 	private JFXTextField firstNameField;
 	@FXML
@@ -46,6 +48,8 @@ public class PersonEditDialogController {
 	private MainApp mainApp;
 	@FXML
 	private ColorPicker colorPicker;
+	@FXML
+	private ImageView img;
 
 	private Stage dialogStage;
 	private Person person;
@@ -89,6 +93,22 @@ public class PersonEditDialogController {
 		cityField.setText(person.getCity());
 		birthdayField.setPromptText(person.getBirthday().toString());
 		colorPicker.setValue(Color.web(person.getcolortext()));
+		
+		Circle clip = new Circle(90, 84.5, 80);
+		img.setClip(clip);
+        img.autosize();
+ 
+		if(person.getAvatar() == ""){
+			 
+			 
+		        
+		   img.setImage(new Image(MainApp.class.getResourceAsStream("view/0.png")));
+			     
+			  
+		}else{
+			img.setImage(new Image(MainApp.class.getResourceAsStream("view/"+person.getAvatar())));
+		}
+		
 
 	}
 

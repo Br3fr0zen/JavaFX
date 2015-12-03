@@ -52,22 +52,22 @@ public class MainApp extends Application {
      */
     public MainApp() {
         // Add some sample data
-        personData.add(new Person("Hans", "Muster", "#FF0F0F"));
-        personData.add(new Person("Ruth", "Mueller","#FF0F0F"));
-        personData.add(new Person("Heinz", "Kurz", "#FF0F0F"));
-        personData.add(new Person("Cornelia", "Meier", "#4B0FFF"));
-        personData.add(new Person("Werner", "Meyer", "#4B0FFF"));
-        personData.add(new Person("Lydia", "Kunz","#4B0FFF"));
-        personData.add(new Person("Anna", "Best","#4B0FFF"));
-        personData.add(new Person("Stefan", "Meier","#4B0FFF"));
-        personData.add(new Person("Martin", "Mueller","#4B0FFF"));
-        personData.add(new Person("","","#ffffff"));
+        personData.add(new Person("El", "Otro", "#FFFFFF", "2.jpg"));
+        personData.add(new Person("Yop", "nya","#FFFFFF", "1.jpg"));
+        personData.add(new Person("Heinz", "Kurz", "#FFFFFF", ""));
+        personData.add(new Person("Cornelia", "Meier", "#FFFFFF", ""));
+        personData.add(new Person("Werner", "Meyer", "#FFFFFF", ""));
+        personData.add(new Person("Lydia", "Kunz","#FFFFFF", ""));
+        personData.add(new Person("Anna", "Best","#FFFFFF", ""));
+        personData.add(new Person("Stefan", "Meier","#FFFFFF", ""));
+        personData.add(new Person("Martin", "Mueller","#FFFFFF", ""));
+        personData.add(new Person("","","#FFFFFF", ""));
     }
 
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("");
+        this.primaryStage.setTitle("AddressApp");
         this.primaryStage.getIcons().add(new Image("file:resources/images/address_book_32.png"));
         this.primaryStage.initStyle(StageStyle.UNDECORATED);
         

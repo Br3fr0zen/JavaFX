@@ -1,5 +1,6 @@
 package ch.makery.address.view;
 
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
 import javafx.event.ActionEvent;
@@ -47,7 +48,6 @@ public class PersonOverviewController {
 	private AnchorPane PersonOverview;
 	@FXML
 	private TilePane tilepane;
-
 	@FXML
 	private Label firstNameLabel;
 	@FXML
@@ -60,7 +60,9 @@ public class PersonOverviewController {
 	private Label cityLabel;
 	@FXML
 	private Label birthdayLabel;
-
+	
+	private String avatar;
+	
 	// Reference to the main application.
 	private MainApp mainApp;
 	private RootLayoutController rootLayout;
@@ -79,23 +81,6 @@ public class PersonOverviewController {
 	 */
 	@FXML
 	private void initialize() {
-
-		// tilepane.getChildren().add(birthdayLabel);
-
-		// ANTIGUO
-		// Initialize the person table with the two columns.
-		// firstNameColumn.setCellValueFactory(
-		// cellData -> cellData.getValue().firstNameProperty());
-		// lastNameColumn.setCellValueFactory(
-		// cellData -> cellData.getValue().lastNameProperty());
-		//
-		// // Clear person details.
-		// showPersonDetails(null);
-		//
-		// // Listen for selection changes and show the person details when
-		// changed.
-		// personTable.getSelectionModel().selectedItemProperty().addListener(
-		// (observable, oldValue, newValue) -> showPersonDetails(newValue));
 	}
 	
 	public void setRootLayout(RootLayoutController rootLayout) {
@@ -122,9 +107,17 @@ public class PersonOverviewController {
 			  
 			if (i != mainApp.getPersonData().size() - 1) {
 				
-				  ImageView imageView = new ImageView(
-					      new Image(MainApp.class.getResourceAsStream("view/"+0+".jpg"))
+				
+				ImageView imageView = null;
+				if(mainApp.getPersonData().get(i).getAvatar() == ""){
+				   imageView = new ImageView(
+					      new Image(MainApp.class.getResourceAsStream("view/0.png"))
 					    );
+				}else{
+					imageView = new ImageView(
+						      new Image(MainApp.class.getResourceAsStream("view/"+mainApp.getPersonData().get(i).getAvatar()))
+						      );
+				}
 				 Circle clip = new Circle(25, 25, 25);
 				 
 			        imageView.setClip(clip);
@@ -159,7 +152,7 @@ public class PersonOverviewController {
 				b.setMinWidth(90);
 				b.setMaxHeight(90);
 				b.setMinHeight(90);
-				b.setStyle("-fx-background-radius: 100em; " + "-fx-font-size: 25pt; -fx-alignment: CENTER;");
+				b.setStyle("-fx-background-radius: 100em; " + "-fx-font-size: 35pt; -fx-alignment: CENTER;");
 				b.setId(String.valueOf(i));
 				b.setTextFill(Color.WHITE);
 				
@@ -221,6 +214,9 @@ public class PersonOverviewController {
 			postalCodeLabel.setText(Integer.toString(person.getPostalCode()));
 			cityLabel.setText(person.getCity());
 			birthdayLabel.setText(DateUtil.format(person.getBirthday()));
+			
+			
+			
 		} else {
 			// Person is null, remove all the text.
 			firstNameLabel.setText("");
@@ -229,6 +225,7 @@ public class PersonOverviewController {
 			postalCodeLabel.setText("");
 			cityLabel.setText("");
 			birthdayLabel.setText("");
+			avatar = null;
 		}
 	}
 
@@ -239,7 +236,7 @@ public class PersonOverviewController {
 	 */
 	@FXML
 	private void handleNewPerson() {
-		Person tempPerson = new Person("", "", "#ffffff");
+		Person tempPerson = new Person("", "", "#ffffff",null);
 
 		mainApp.getPersonData().add(tempPerson);
 		

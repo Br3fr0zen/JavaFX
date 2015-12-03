@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.effect.*?>
@@ -8,29 +9,29 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: white;" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.view.PersonEditDialogController">
-<children><GridPane layoutX="40.0" layoutY="14.0" prefHeight="190.0" prefWidth="527.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="-72.0" AnchorPane.topAnchor="14.0">
+<children><GridPane layoutX="61.0" layoutY="18.0" prefHeight="222.0" prefWidth="293.0" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="246.0" AnchorPane.topAnchor="18.0">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="120.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="240.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="218.0" minWidth="10.0" prefWidth="105.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="533.0" minWidth="10.0" prefWidth="194.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+<RowConstraints maxHeight="39.0" minHeight="6.0" prefHeight="32.0" vgrow="SOMETIMES" />
+<RowConstraints maxHeight="63.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
   </rowConstraints>
 <children><Label style="-fx-text-fill: black;" text="First Name" /><Label style="-fx-text-fill: black;" text="Last Name" GridPane.rowIndex="1" /><Label style="-fx-text-fill: black;" text="Street" GridPane.rowIndex="2" /><Label style="-fx-text-fill: black;" text="City" GridPane.rowIndex="3" /><Label style="-fx-text-fill: black;" text="Postal Code" GridPane.rowIndex="4" /><Label style="-fx-text-fill: black;" text="Birthday" GridPane.rowIndex="5" />
-            <DatePicker fx:id="birthdayField" ShowWeekNumbers="false" prefHeight="32.0" prefWidth="253.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <DatePicker fx:id="birthdayField" ShowWeekNumbers="false" prefHeight="32.0" prefWidth="175.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor></DatePicker>
-            <JFXTextField fx:id="firstNameField" focusColor="#3765f2" GridPane.columnIndex="1" />
-            <JFXTextField fx:id="lastNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <JFXTextField fx:id="streetField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <JFXTextField fx:id="cityField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <JFXTextField fx:id="postalCodeField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <JFXTextField fx:id="firstNameField" focusColor="#d81b60" GridPane.columnIndex="1" />
+            <JFXTextField fx:id="lastNameField" focusColor="#d81b60" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <JFXTextField fx:id="streetField" focusColor="#d81b60" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <JFXTextField fx:id="cityField" focusColor="#d81b60" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <JFXTextField fx:id="postalCodeField" focusColor="#d81b60" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 </children>
 </GridPane>
 <HBox layoutX="197.1875" layoutY="241.0" spacing="5.0" styleClass="editbutton" stylesheets="@DarkTheme.css" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
@@ -43,8 +44,9 @@
                </effect></Button>
 </children>
 </HBox>
-      <ColorPicker fx:id="colorPicker" layoutX="50.0" layoutY="248.0" prefHeight="42.0" prefWidth="101.0" stylesheets="@DarkTheme.css">
+      <ColorPicker fx:id="colorPicker" layoutX="50.0" layoutY="248.0" prefHeight="42.0" prefWidth="130.0" stylesheets="@DarkTheme.css" AnchorPane.bottomAnchor="10.0">
          <effect>
             <DropShadow color="#00000063" height="10.0" offsetX="4.0" offsetY="4.0" radius="4.5" width="10.0" />
          </effect></ColorPicker>
+      <ImageView fx:id="img" fitHeight="169.0" fitWidth="200.0" layoutX="363.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
 </children></AnchorPane>
