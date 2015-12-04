@@ -53,7 +53,7 @@ public class MainApp extends Application {
     public MainApp() {
         // Add some sample data
         personData.add(new Person("notenof", "mineral", "#FFFFFF", "2.jpg"));
-        personData.add(new Person("jamon", "monja","#FFFFFF", "1.jpg"));
+        personData.add(new Person("monja", "jamon","#FFFFFF", "1.jpg"));
         personData.add(new Person("Heinz", "Kurz", "#FFFFFF", ""));
         personData.add(new Person("Cornelia", "Meier", "#FFFFFF", ""));
         personData.add(new Person("Werner", "Meyer", "#FFFFFF", ""));

@@ -151,9 +151,13 @@ public class PersonOverviewController {
 				b.setMinWidth(90);
 				b.setMaxHeight(90);
 				b.setMinHeight(90);
-				b.setStyle("-fx-background-radius: 100em; " + "-fx-font-size: 35pt; -fx-alignment: CENTER;");
+				b.setStyle("-fx-background-radius: 100em; " + "-fx-font-size: 35pt; -fx-alignment: CENTER; -fx-background-color:#D81B60;"
+						+ "-fx-effect: dropshadow(gaussian, derive(black,80%), 4, 0, 4, 4);");
+				
+			
 				b.setId(String.valueOf(i));
 				b.setTextFill(Color.WHITE);
+				
 				
 				
 				

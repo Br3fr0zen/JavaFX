@@ -307,6 +307,16 @@ date-picker .cell{
     -fx-image: url(img/minimize-hover.png); 
 }
 
+
+
+
+
+/*******************************************************************************
+ *                                                                             *
+ * EditView buttons                                                            *
+ *                                                                             *
+ ******************************************************************************/
+
 .editbutton:default{
 	-fx-background-radius: 0 0 0 0; 
 	-fx-padding: 0 0 0 0;
@@ -336,7 +346,9 @@ date-picker .cell{
  * Person Buttons                                                              *
  *                                                                             *
  ******************************************************************************/
- 
+.masbutton:hover{
+	-fx-background-color: black;
+}
  
 .button {
     -fx-padding: 0 0 0 0;
