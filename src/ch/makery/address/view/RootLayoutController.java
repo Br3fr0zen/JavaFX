@@ -17,7 +17,7 @@ import ch.makery.address.MainApp;
  * application layout containing a menu bar and space where other JavaFX
  * elements can be placed.
  * 
- * @author Marco Jakob
+ * @author grupo maxpower
  */
 public class RootLayoutController {
 
@@ -106,6 +106,11 @@ public class RootLayoutController {
             mainApp.savePersonDataToFile(file);
         }
     }
+    /**
+     * maneja entrar y salir de el modo de borrado cambiando la variable
+     * deleteM true para borrar y false para no borrar
+     * @see PersonOverviewController
+     */
 
     @FXML
     private void deleteModeIv(){
@@ -123,12 +128,16 @@ public class RootLayoutController {
     	
     }
     
+    /*
+     * Retorna el valor de la variable deleteM. True para borrar, false para no borrar.
+     * @return deleteM
+     */
     public boolean deleteMode(){
     	return deleteM;
     }
     
     /**
-     * Opens the birthday statistics.
+     * Minimiza la aplicacion cuando es pulsado
      */
     @FXML
     private void handleMinimizar() {

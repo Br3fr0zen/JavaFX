@@ -1,11 +1,21 @@
-
-
-
-
 .background {
     -fx-background-color: #EEEEEE;
 }
 
+
+
+
+
+
+
+
+
+
+/*******************************************************************************
+ *                                                                             *
+ * ColorPicker                                                                 *
+ *                                                                             *
+ ******************************************************************************/
 
 .color-picker {
     -fx-background-color: #669999; 
@@ -17,6 +27,22 @@
 .color-picker .color-picker-label .text {
     -fx-fill: #000000;
 }
+
+
+
+
+
+
+
+
+
+
+
+/*******************************************************************************
+ *                                                                             *
+ * Label       		                                                           *
+ *                                                                             *
+ ******************************************************************************/
 
 .label {
     -fx-font-size: 11pt;
@@ -38,6 +64,22 @@
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
+
+
+
+
+
+
+
+
+
+
+
+/*******************************************************************************
+ *                                                                             *
+ * TableView                                                                   *
+ *                                                                             *
+ ******************************************************************************/
 
 .table-view {
     -fx-base: #1d1d1d;
@@ -76,8 +118,21 @@
     -fx-background-color: -fx-focus-color; 
    
     
+    
 }
 
+
+
+
+
+
+
+
+/*******************************************************************************
+ *                                                                             *
+ * Split-pane                                                                  *
+ *                                                                             *
+ ******************************************************************************/
 .split-pane:horizontal > .split-pane-divider {
     -fx-border-color: transparent #1d1d1d transparent #1d1d1d;
     -fx-background-color: transparent, derive(#1d1d1d,20%);
@@ -87,6 +142,20 @@
     -fx-padding: 1 0 0 0;
 }
 
+
+
+
+
+
+
+
+
+
+/*******************************************************************************
+ *                                                                             *
+ * Menu	                                                                       *
+ *                                                                             *
+ ******************************************************************************/
 .menu-bar {
     -fx-background-color: derive(#1d1d1d,20%);
     
@@ -108,18 +177,44 @@
     -fx-background-color: black;
 }
 
+
+
+
+
+
+
+/*******************************************************************************
+ *                                                                             *
+ * TextField                                                                  *
+ *                                                                             *
+ ******************************************************************************/
+
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
 }
 
+
+
+
+
+
+
+
+
+/*******************************************************************************
+ *                                                                             *
+ * DatePicker                                                                  *
+ *                                                                             *
+ ******************************************************************************/
 .date-picker .month-year-pane{
-     -fx-background-color: #1d1d1d;
+	-fx-text-fill: white;
+     -fx-background-color:  #3F51B5;
      -fx-padding: 5 5 5 5;
      
 }
-.date-picker .cell{
-   -fx-background-color: #1d1d1d; 
+date-picker .cell{
+   -fx-background-color: #EEEEEE;
    -fx-text-fill:white;
    -fx-border-color:white;
 
@@ -133,20 +228,33 @@
 }
 
 .date-picker .day-name-cell{
-   -fx-background-color: #1d1d1d; 
-   -fx-text-fill:Red;
+   -fx-background-color: #5C6BC0; 
+   -fx-text-fill:white;
+
 
 }
+.date-picker-popup > * > .previous-month,
+.date-picker-popup > * > .next-month {
+    -fx-background: derive(-fx-control-inner-background, -4%);
+    -fx-text-fill:#E0E0E0;
+}
 
-
-
-
-/*BOTONES */
 .date-picker .month-year-pane .button{
-     -fx-background-color: #1d1d1d;
+     -fx-background-color: #3F51B5;
      -fx-border-width: 0;
      
 }
+
+
+
+
+
+
+/*******************************************************************************
+ *                                                                             *
+ * ScrollBar                                                                  *
+ *                                                                             *
+ ******************************************************************************/
 
 /* The increment and decrement button CSS class of scrollbar */
 .mylistview .increment-button ,.mylistview .decrement-button {
@@ -175,11 +283,17 @@
 }
 
 
-/* 
- * Metro style Push Button
- * Author: Pedro Duque Vieira
- * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
- */
+
+
+
+
+
+
+/*******************************************************************************
+ *                                                                             *
+ * Toolbar buttons                                                             *
+ *                                                                             *
+ ******************************************************************************/
 .cross {
     -fx-image: url(img/close.png);
 }
@@ -192,15 +306,7 @@
 .minimize:hover {
     -fx-image: url(img/minimize-hover.png); 
 }
-/* 
-.delete {
-    -fx-image: url(img/delete.png);
-}
-.delete:hover {
-    -fx-image: url(img/delete-hover.png); 
- 
-}
-*/
+
 .editbutton:default{
 	-fx-background-radius: 0 0 0 0; 
 	-fx-padding: 0 0 0 0;
@@ -219,9 +325,17 @@
 }
 
 
+
+
+
+
  
  
- 
+ /*******************************************************************************
+ *                                                                             *
+ * Person Buttons                                                              *
+ *                                                                             *
+ ******************************************************************************/
  
  
 .button {
@@ -249,13 +363,7 @@
   -fx-text-fill: #1d1d1d;
 }
 
-.button:focused {
-   /*  -fx-border-color: white, white;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 5, 5;
-    -fx-border-insets: 1 1 1 1, 0;*/
-}
+
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;

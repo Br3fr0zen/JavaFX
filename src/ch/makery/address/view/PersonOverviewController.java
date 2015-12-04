@@ -48,18 +48,7 @@ public class PersonOverviewController {
 	private AnchorPane PersonOverview;
 	@FXML
 	private TilePane tilepane;
-	@FXML
-	private Label firstNameLabel;
-	@FXML
-	private Label lastNameLabel;
-	@FXML
-	private Label streetLabel;
-	@FXML
-	private Label postalCodeLabel;
-	@FXML
-	private Label cityLabel;
-	@FXML
-	private Label birthdayLabel;
+	
 	
 	private String avatar;
 	
@@ -89,9 +78,14 @@ public class PersonOverviewController {
 	}
 
 	/**
-	 * Is called by the main application to give a reference back to itself.
+	 * Crea un numero de botones dependiendo de la listade personas y les day una id segun el orden
+	 * para pasarlo a PersonEditDialogController y poder editarlos.
+	 * tambien añade el nombre yla imagen de la persona al boton y un EventLisener al boton para activar cambiareditar
+	 * y pasarle la id del boton pulsado para poder coger la informacion de la persona pulsada.
+	 * En caso de que el mdo borrar esteactivado el boton pulsado sera borrado junto a la persona al que pertenecia de la lista
 	 * 
 	 * @param mainApp
+	 * @see MainApp PersonEditDialogController RootLayoutController
 	 */
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
@@ -105,6 +99,10 @@ public class PersonOverviewController {
 			 
 			JFXButton b = new JFXButton();
 			  
+			/*
+			 * Compuerba que no es el ultimo de la lista por que al final de esta
+			 * se añadira un boton para añadir nuevas personas
+			 */
 			if (i != mainApp.getPersonData().size() - 1) {
 				
 				
@@ -118,6 +116,7 @@ public class PersonOverviewController {
 						      new Image(MainApp.class.getResourceAsStream("view/"+mainApp.getPersonData().get(i).getAvatar()))
 						      );
 				}
+				//Circulo para dar forma circular ala imagen
 				 Circle clip = new Circle(25, 25, 25);
 				 
 			        imageView.setClip(clip);
@@ -167,11 +166,11 @@ public class PersonOverviewController {
 
 				@Override
 				public void handle(ActionEvent event) {
-					 //Depurar id button
+					 //syso para mostrar la id del boton que se ha pulsado
 					//System.out.println(b.getId());
 					
 					if(rootLayout.deleteMode()){
-						//EN CASO DE QUE NO SEA EL BOTON DE AÑADIR
+						//Comprobacion para impedir que el boton de añadir sea borrado
 						if(mainApp.getPersonData().size() - 1 != Integer.parseInt(b.getId())){
 						mainApp.getPersonData().remove(Integer.parseInt(b.getId()));
 						
@@ -198,41 +197,11 @@ public class PersonOverviewController {
 		}
 	}
 
-	/**
-	 * Fills all text fields to show details about the person. If the specified
-	 * person is null, all text fields are cleared.
-	 * 
-	 * @param person
-	 *            the person or null
-	 */
-	private void showPersonDetails(Person person) {
-		if (person != null) {
-			// Fill the labels with info from the person object.
-			firstNameLabel.setText(person.getFirstName());
-			lastNameLabel.setText(person.getLastName());
-			streetLabel.setText(person.getStreet());
-			postalCodeLabel.setText(Integer.toString(person.getPostalCode()));
-			cityLabel.setText(person.getCity());
-			birthdayLabel.setText(DateUtil.format(person.getBirthday()));
-			
-			
-			
-		} else {
-			// Person is null, remove all the text.
-			firstNameLabel.setText("");
-			lastNameLabel.setText("");
-			streetLabel.setText("");
-			postalCodeLabel.setText("");
-			cityLabel.setText("");
-			birthdayLabel.setText("");
-			avatar = null;
-		}
-	}
+	
 
 
 	/**
-	 * Called when the user clicks the new button. Opens a dialog to edit
-	 * details for a new person.
+	 * Creauna nuevo persona vacia y la añade a la lista de personas
 	 */
 	@FXML
 	private void handleNewPerson() {

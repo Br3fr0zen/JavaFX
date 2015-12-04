@@ -52,8 +52,8 @@ public class MainApp extends Application {
      */
     public MainApp() {
         // Add some sample data
-        personData.add(new Person("El", "Otro", "#FFFFFF", "2.jpg"));
-        personData.add(new Person("Yop", "nya","#FFFFFF", "1.jpg"));
+        personData.add(new Person("notenof", "mineral", "#FFFFFF", "2.jpg"));
+        personData.add(new Person("jamon", "monja","#FFFFFF", "1.jpg"));
         personData.add(new Person("Heinz", "Kurz", "#FFFFFF", ""));
         personData.add(new Person("Cornelia", "Meier", "#FFFFFF", ""));
         personData.add(new Person("Werner", "Meyer", "#FFFFFF", ""));
@@ -63,7 +63,11 @@ public class MainApp extends Application {
         personData.add(new Person("Martin", "Mueller","#FFFFFF", ""));
         personData.add(new Person("","","#FFFFFF", ""));
     }
-
+    
+    /**
+     * Inicia los metodos initRootLayout y showPersonOverview
+     * @see initRootLayout() showPersonOverview()
+     */
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -79,8 +83,8 @@ public class MainApp extends Application {
     }
     
     /**
-     * Initializes the root layout and tries to load the last opened
-     * person file.
+     * Inicia el root layout en la escena
+     * @see rootLayoutController
      */
     public void initRootLayout() {
         try {
@@ -124,7 +128,8 @@ public class MainApp extends Application {
     }
 
     /**
-     * Shows the person overview inside the root layout.
+     * Enseña PersonOverview en la escena
+     * @see PersonOverviewController
      */
     public void showPersonOverview() {
         try {
@@ -133,6 +138,7 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("view/PersonOverview.fxml"));
             AnchorPane personOverview = (AnchorPane) loader.load();
             
+            //Animacion de face out al iniciar la pantalla
             FadeTransition ft = new FadeTransition(Duration.millis(700), personOverview);
             ft.setFromValue(0.0);
             ft.setToValue(1.0);
@@ -151,7 +157,13 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
-    
+   
+    /**
+     * Cambia PersonOverview por PersonEditDialog para poder editar a la persona 
+     * que se a echo click pasandole la id de la persona
+     * @param bid
+     * @see PersonEditDialogController
+     */
     public void cambiareditar(int bid){
     	
             // Load person overview.
@@ -161,6 +173,7 @@ public class MainApp extends Application {
 			try {
 								
 				personOverview = (AnchorPane) loader.load();
+				//animacion de face out entre pantallas
 				FadeTransition ft = new FadeTransition(Duration.millis(700), personOverview);
 	            ft.setFromValue(0.0);
 	            ft.setToValue(1.0);
@@ -180,45 +193,7 @@ public class MainApp extends Application {
             
        
     }
-    
-	/**
-	 * Opens a dialog to edit details for the specified person. If the user
-	 * clicks OK, the changes are saved into the provided person object and true
-	 * is returned.
-	 * 
-	 * @param person the person object to be edited
-	 * @return true if the user clicked OK, false otherwise.
-	 */
-	public boolean showPersonEditDialog(Person person) {
-		try {
-			// Load the fxml file and create a new stage for the popup dialog.
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("view/PersonEditDialog.fxml"));
-			AnchorPane page = (AnchorPane) loader.load();
-
-			// Create the dialog Stage.
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Edit Person");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(primaryStage);
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
-
-			// Set the person into the controller.
-			PersonEditDialogController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
-			controller.setPerson(person);
-
-			// Show the dialog and wait until the user closes it
-			dialogStage.showAndWait();
-
-			return controller.isOkClicked();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-    
+        
     /**
      * Returns the main stage.
      * @return
@@ -331,36 +306,7 @@ public class MainApp extends Application {
         }
     }
     
-    /**
-     * Opens a dialog to show birthday statistics.
-     */
-    public void showBirthdayStatistics() {
-        try {
-            // Load the fxml file and create a new stage for the popup.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/BirthdayStatistics.fxml"));
-            AnchorPane page = (AnchorPane) loader.load();
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Birthday Statistics");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(primaryStage);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-
-            // Set the persons into the controller.
-            BirthdayStatisticsController controller = loader.getController();
-            controller.setPersonData(personData);
-
-            dialogStage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    
-    
-    
+ 
 
     public static void main(String[] args) {
         launch(args);
